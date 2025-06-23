@@ -161,7 +161,9 @@ body::before {
     justify-content: center;
     gap: 4Opx;
     flex-wrap: wrap;
-    padding: 2Opx;
+    padding: 60px 2Opx;
+    background-color: #f9f9f9;
+    text-align: center;
 }
 
 .membre {
@@ -169,12 +171,20 @@ body::before {
     border-radius: 15px;
     padding: 15px;
     text-align: center;
-    width: 200px;
+    width: 260px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.membre:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .membre img {
    width: 100%;
-   border-radius: 50%;
-   margin-bottom: 10px;
+   height: 260px;
+   object-fit: cover;
+   border-radius: 10px;
+   margin-bottom: 15px;
 }
