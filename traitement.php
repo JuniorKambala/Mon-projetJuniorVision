@@ -1,24 +1,34 @@
 <?php
-// Connexion à la base SQLite 
-$db = new PDO('sqlite:db/message.db');
+// Connexion à la base de données 
+$serveur = "localhost";
+$utilisateur = "root";
+$motdepasse = "";
+$base = "projjuniorvision";
 
-//Créér la table si elle n'existe pas 
-$db->exect("CREATE TABLE IF NOT EXISTS message (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  nom TEXT,
-  email TEXT,
-  message TEXT,
-  date_envoi DATETIME DEFAULT CURRENT_TIMESTAMP
-  )");
+//Connexion
+$conn = new mysqli($serveur, $utilisateur, $motdepasse, $base);
 
-//Récupération des données du formulaire
+//Vérifie la connexion
+if ($conn->connect_error) {
+  die("Échec de la connexion : " . $conn->connect_error); 
+}
+
+//Récupère les données du formulaire 
 $nom = $_POST['nom'];
 $email = $_POST['email'];
 $message = $_POST['message'];
 
-//Insertion des données 
-$stmt = $db->prepare("INSERT INTO messages (nom, email, message) VALUES (?,?, ?)");
-$stmt->execute([$nom, $email, $message]);
+//Prépare et exécute la requête 
+$sql = "INSERT INTO message (nom, email, message) VALUE (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $conn, $email, $message);
 
-echo "Message envoyé avec succès !";
+if ($stmt->execute()) {
+   echo "Message envoyé avec succès !";
+} else {
+   echo "Erreur : " . $conn->error;
+}
+
+$stmt->close();
+$conn->close();
 ?>
