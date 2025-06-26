@@ -214,6 +214,7 @@ body::before {
     pointer-events: none; /* Le logo ne bloque pas les clics */
     z-index: 0;
 }
+
 /* Section Équipe */
 .equipe {
     max-width: 1000px;
@@ -274,3 +275,24 @@ body::before {
     font-size: 14px;
     line-height: 1.5;
 }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav ul.menu li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .equipe {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .membre {
+        width: 90%;
+    }
+
+    .contact form {
+        padding: 0 10px;
+    }
+ }
