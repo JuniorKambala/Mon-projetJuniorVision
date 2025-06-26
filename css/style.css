@@ -279,8 +279,8 @@ body::before {
 /* Responsive design */
 @media (max-width: 768px) {
     nav ul.menu li {
-        display: block;
-        margin: 10px 0;
+        display: inline-block;
+        margin: 5px 10px;
     }
 
     .equipe {
